@@ -5,11 +5,21 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // creating Redux store
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/rootReducer';
 
+// thunk middleware
+import thunk from 'redux-thunk';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
 const store = createStore(
-    rootReducer
+    rootReducer,
+    // applymiddleware(thunk)
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));

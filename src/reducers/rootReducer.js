@@ -1,8 +1,8 @@
 // Here combine all reducers
 import { combineReducers } from 'redux';
 
-import music from './musics';
+import musics from './musics';
 
 export default combineReducers({
-    music
+    musics
 });

@@ -9,19 +9,7 @@ const MusicList = ({musics}) => {
 
 
     const musicList = (
-        <div>
-        <p>There are Musics</p>
-        
-        <ul className={"list"}>
-            {
-                
-                musics.map(music =>
-                    <li key={music.name}> {music.name} </li>
-                )
-            }
-        </ul>
-        </div>
-        
+        <p>There are Musics</p>        
     )
         console.log('gelen musics: ', musics);
     return(

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import MusicList from '../MusicList';
 
 class MusicsPage extends Component {
 // we need
@@ -14,6 +15,7 @@ class MusicsPage extends Component {
         return (
             <div>
                 <h2>Musics Page</h2>
+                <MusicList musics={this.props.musics}></MusicList>
             </div>
         )
     }

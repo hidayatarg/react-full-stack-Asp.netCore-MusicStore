@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MusicsPage from './components/pages/MusicsPage';
+import { Link, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -10,14 +12,10 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          <Link to="musics">Musics</Link>
+        </p>
+        <Route path ="/musics" component={MusicsPage}></Route>
       </header>
     </div>
   );

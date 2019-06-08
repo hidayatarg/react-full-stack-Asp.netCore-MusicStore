@@ -13,6 +13,9 @@ import thunk from 'redux-thunk';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
+// router
+import { BrowserRouter } from 'react-router-dom';
+
 
 
 const store = createStore(
@@ -24,9 +27,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    <BrowserRouter>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </BrowserRouter>,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

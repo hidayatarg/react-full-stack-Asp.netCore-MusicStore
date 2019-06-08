@@ -9,13 +9,27 @@ class MusicsPage extends Component {
         musics: PropTypes.array.isRequired
     }
 
+    state ={
+        musics:[
+            {
+                name:'Tarkan'
+            },
+            {
+                name:'Ajda Pekan'
+            },
+            {
+                name:'Ibrahim Erkal'
+            }
+        ]
+    }
+
 
     render() {
-        console.log('Props: ', this.props);
+        // console.log('Props: ', this.props);
         return (
             <div>
                 <h2>Musics Page</h2>
-                <MusicList musics={this.props.musics}></MusicList>
+                <MusicList musics={this.state.musics}></MusicList>
             </div>
         )
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // stateless component
-const MusicList = props => {
+const MusicList = ({musics}) => {
     const emptyMessage = (
         <p>There are no Musics yet.</p>
     );
@@ -14,7 +14,7 @@ const MusicList = props => {
     return(
         <div>
             {
-                props.musics.length === 0 ? emptyMessage : musicList
+                musics.length === 0 ? emptyMessage : musicList
             }
         </div>
     )

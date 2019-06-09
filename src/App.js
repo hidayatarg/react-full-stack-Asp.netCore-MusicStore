@@ -7,44 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 import {
   Container, Divider, Grid, Header, Image, List, Menu, Segment, Visibility,
 } from 'semantic-ui-react';
-
-const menuStyle = {
-  border: 'none',
-  borderRadius: 0,
-  boxShadow: 'none',
-  marginBottom: '1em',
-  marginTop: '1em',
-  transition: 'box-shadow 0.5s ease, padding 0.5s ease',
-}
-
-const fixedMenuStyle = {
-  backgroundColor: '#fff',
-  border: '1px solid #ddd',
-  boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)'
-}
-
-const overlayStyle = {
-  float: 'left',
-  margin: '0em 3em 1em 0em',
-}
-
-const fixedOverlayStyle = {
-  ...overlayStyle,
-  position: 'fixed',
-  top: '80px',
-  zIndex: 10,
-}
-
-const overlayMenuStyle = {
-  position: 'relative',
-  left: 0,
-  transition: 'left 0.5s ease',
-}
-
-const fixedOverlayMenuStyle = {
-  ...overlayMenuStyle,
-  left: '800px',
-}
+import { menuStyle, fixedMenuStyle, overlayStyle } from './helpers/styleHelpers';
 
 class App extends Component {
   state = {
@@ -77,7 +40,7 @@ class App extends Component {
               <Menu.Item>
                 <Image size='mini' src='https://react.semantic-ui.com/logo.png' />
               </Menu.Item>
-              <Menu.Item header>Movieapp</Menu.Item>
+              <Menu.Item header>Music Store</Menu.Item>
               <Menu.Item as='a'>
                 <Link to="musics">Musics</Link>
               </Menu.Item>

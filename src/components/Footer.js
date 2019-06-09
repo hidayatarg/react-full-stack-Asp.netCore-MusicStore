@@ -9,11 +9,11 @@ const Footer = (props) => {
         <div>
             <Segment
                 inverted
-                style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
+                style={{ margin: '5em 0em 0em', padding: '1em 0em' }}
                 vertical
             >
                 <Container textAlign='center'>
-                    <Grid columns={4} divided stackable inverted>
+                    {/* <Grid columns={4} divided stackable inverted>
                         <Grid.Row>
                             <Grid.Column>
                                 <Header inverted as='h4' content='Group 1' />
@@ -47,8 +47,8 @@ const Footer = (props) => {
                                 <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
                             </Grid.Column>
                         </Grid.Row>
-                    </Grid>
-                    <Divider inverted section />
+                    </Grid> */}
+                    {/* <Divider inverted section /> */}
                     <Image src='https://react.semantic-ui.com/logo.png' centered size='mini' />
                     <List horizontal inverted divided link>
                         <List.Item as='a' href='#'>Site Map</List.Item>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.DataAccess;
+using Backend.DataAccess.Abstruct;
+using Backend.DataAccess.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +36,10 @@ namespace Backend
              opt.UseNpgsql(Configuration.GetConnectionString("DataDBConection")));
 
             services.AddMvc();
+            // DI Scopes
+            // In case a controller request for IMusicDal Return EFMusicDal
+            services.AddScoped<IMusicDal, EFMusicDal>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

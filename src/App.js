@@ -11,12 +11,12 @@ import { menuStyle, fixedMenuStyle } from './helpers/styleHelpers';
 
 class App extends Component {
   state = {
-    menuFixed: false,
+    menuFixed: null,
     overlayFixed: false,
   }
 
   stickTopMenu = () => this.setState({ menuFixed: true })
-  unStickTopMenu = () => this.setState({ menuFixed: false })
+  unStickTopMenu = () => this.setState({ menuFixed: null })
 
   render() {
     const { menuFixed } = this.state

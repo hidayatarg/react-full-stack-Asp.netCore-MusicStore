@@ -11,6 +11,8 @@ const MusicList = ({musics}) => {
     const musicList = (
         <p>There are Musics</p>        
     )
+    console.log('gelen musics: ', musics);
+    
     return(
         <div>
             {
@@ -21,7 +23,10 @@ const MusicList = ({musics}) => {
 }
 
 MusicList.prototype = {
-    musics: PropTypes.array.isRequired
+    // state movies convert to array
+    musics: PropTypes.shape({
+        musics: PropTypes.array.isRequired,
+    }).isRequired
 }
 
 export default MusicList

@@ -68,7 +68,8 @@ namespace Backend
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            // Cors Middleware
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.UseMvc();
         }
     }

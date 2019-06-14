@@ -1,8 +1,12 @@
 
-import { FETCHED_MUSICS } from '../actions/musics';
+import { FETCHED_MUSICS,
+         FETCHED_MUSICS_ERROR } from '../actions/musics';
 
 const initialState = {
-    musics: []
+    fetching: false,
+    fetched: false,
+    musics: [],
+    error: {}
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +15,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 musics: action.payload
+            }
+        case FETCHED_MUSICS_ERROR:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state;

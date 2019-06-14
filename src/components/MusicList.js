@@ -9,7 +9,11 @@ const MusicList = ({musics}) => {
 
 
     const musicList = (
-        <p>There are Musics</p>        
+        <div>
+            {
+                musics.error.response ? <h3>Error retrieving data</h3> : 'No Error'
+            }
+        </div> 
     )
     console.log('gelen musics: ', musics);
     

@@ -6,6 +6,8 @@ import { serverUrl } from '../environment/environment';
 export function fetchMusics() {
     return dispatch => {
         axios.get(serverUrl + 'musics')
-            .then(result => console.log(result.data))
+            .then(result => result.data )
+            .then(data => console.log(data))
+            .then(error => console.log(error))
     }
 }

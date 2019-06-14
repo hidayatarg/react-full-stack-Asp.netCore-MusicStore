@@ -1,5 +1,6 @@
 ﻿using Backend.DataAccess.Abstruct;
 using Backend.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,17 @@ namespace Backend.DataAccess.Concrete
         }
         public async Task<User> Register(User user, string password)
         {
-            // Salting Password
+            // Salting & Hashing Password
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
             user.PasswordHash = passwordHash;
-            user.PasswordHash = passwordSalt;
+            user.PasswordSalt = passwordSalt;
+
             await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
 
             return user;
-
         }
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
@@ -36,7 +38,6 @@ namespace Backend.DataAccess.Concrete
                 // key can be also used
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-
             }
         }
 
@@ -67,9 +68,13 @@ namespace Backend.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<bool> UserExits(string userName)
+        public async Task<bool> UserExits(string userName)
         {
-            throw new NotImplementedException();
+            if (await _context.Users.AnyAsync(x => x.UserName == userName))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

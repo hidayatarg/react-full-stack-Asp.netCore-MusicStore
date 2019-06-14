@@ -38,6 +38,7 @@ namespace Backend
             services.AddMvc();
             // DI Scopes
             // In case a controller request for IMusicDal Return EFMusicDal
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IMusicDal, EFMusicDal>();
 
         }

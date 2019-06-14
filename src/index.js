@@ -16,13 +16,16 @@ import { Provider } from 'react-redux';
 // router
 import { BrowserRouter } from 'react-router-dom';
 
+// logger 
+import logger from 'redux-logger';
+
 
 
 const store = createStore(
     rootReducer,
     // applymiddleware(thunk)
     composeWithDevTools(
-        applyMiddleware(thunk)
+        applyMiddleware(thunk, logger)
     )
 );
 

@@ -40,6 +40,39 @@ namespace Backend.DataAccess.Concrete
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+        public async Task<User> Login(string userName, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == userName);
+            if (user == null)
+            {
+                return null;
+            }
+            // Check if the password match
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            {
+                return null;
+            }
+            return user;
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] userPasswordHash, byte[] userPasswordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(userPasswordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+
+                //compare
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != userPasswordHash[i])
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
 
         public void DeleteUserById(int id)
         {
@@ -51,10 +84,7 @@ namespace Backend.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<User> Login(string userName, string password)
-        {
-            throw new NotImplementedException();
-        }
+        
 
        
 

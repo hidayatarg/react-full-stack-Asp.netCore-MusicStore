@@ -76,26 +76,65 @@ namespace Backend.DataAccess.Concrete
 
         public void DeleteUserById(int id)
         {
-            throw new NotImplementedException();
+            var userInDb = _context.Users.FirstOrDefault(c => c.Id == id);
+            if (userInDb == null)
+            {
+                throw new InvalidOperationException();
+            }
+            _context.Users.Remove(userInDb);
+            _context.SaveChanges();
         }
 
-        public Task<User> GetUserWithId(int id)
+        public async Task<User> GetUserWithId(int id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            return user;
         }
 
-        
-
-       
-
-        public Task<User> UpdatePassword(int id, string oldPassword, string newPassword)
+        public async Task<User> UpdatePassword(int id, string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            var userInDb = await _context.Users.FirstOrDefaultAsync(c => c.Id == id);
+            if (userInDb == null)
+                return null;
+            //check the user old password
+            if (!VerifyPasswordHash(oldPassword, userInDb.PasswordHash, userInDb.PasswordSalt))
+                return null;
+
+            // Update Process
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(newPassword, out passwordHash, out passwordSalt);
+
+            userInDb.PasswordHash = passwordHash;
+            userInDb.PasswordSalt = passwordSalt;
+
+            _context.Users.Update(userInDb);
+            await _context.SaveChangesAsync();
+            return userInDb;
         }
 
-        public Task<User> UpdateUserInformation(User user, string password)
+        public async Task<User> UpdateUserInformation(User user, string password)
         {
-            throw new NotImplementedException();
+            //var user = _context.Users.Where(c => c.Id == id).FirstOrDefault();
+            //var userInDb = _context.Users.FirstOrDefault(c => c.Id == id);
+
+            var userInDb = await _context.Users.FirstOrDefaultAsync(c => c.Id == user.Id);
+            // If user with entered id is not in db
+            if (userInDb == null)
+            {
+                return null;
+            }
+            // Update the password if the user has entered an new password
+            byte[] passwordHash, passwordSalt;
+            if (password != null)
+            {
+                CreatePasswordHash(password, out passwordHash, out passwordSalt);
+                userInDb.PasswordHash = passwordHash;
+                userInDb.PasswordSalt = passwordSalt;
+            }
+            _context.Users.Update(userInDb);
+            _context.SaveChanges();
+            return userInDb;
+
         }
 
         public async Task<bool> UserExits(string userName)

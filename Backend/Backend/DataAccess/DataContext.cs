@@ -20,5 +20,7 @@ namespace Backend.DataAccess
         }
         // DbSets
         public DbSet<Music> Musics { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }

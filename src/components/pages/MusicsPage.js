@@ -8,7 +8,7 @@ import { fetchMusics } from '../../actions/musics'
 class MusicsPage extends Component {
 // we need
     static propTypes = {
-        musics: PropTypes.array.isRequired
+        musics: PropTypes.object.isRequired
     }
 
     // mouting

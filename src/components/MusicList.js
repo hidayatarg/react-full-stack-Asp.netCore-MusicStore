@@ -11,7 +11,6 @@ const MusicList = ({musics}) => {
     const musicList = (
         <p>There are Musics</p>        
     )
-        console.log('gelen musics: ', musics);
     return(
         <div>
             {

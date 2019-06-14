@@ -3,12 +3,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MusicList from '../MusicList';
 
+import { fetchMusics } from '../../actions/musics'
+
 class MusicsPage extends Component {
 // we need
     static propTypes = {
         musics: PropTypes.array.isRequired
     }
 
+    // mouting
+    componentDidMount() {
+        this.props.fetchMusics();
+    }
+    
     render() {
         // console.log('Props: ', this.props);
         return (
@@ -27,4 +34,9 @@ const mapStateToProps = ({ musics }) => {
     }
 }
 
-export default connect(mapStateToProps) (MusicsPage)
+// for using action methods
+const mapDispatchToProps = {
+    fetchMusics
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (MusicsPage)
